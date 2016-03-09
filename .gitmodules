@@ -1,0 +1,3 @@
+[submodule "project/library/libft"]
+	path = project/library/libft
+	url = https://github.com/koloux/libft.git

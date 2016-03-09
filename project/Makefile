@@ -6,17 +6,18 @@
 #*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/03/07 09:32:29 by nhuber            #+#    #+#             *#
-#*   Updated: 2016/03/07 10:03:34 by nhuber           ###   ########.fr       *#
+#*   Updated: 2016/03/09 12:10:31 by nhuber           ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = fillit
-L_DIR = library
+L_DIR = library/libft
 F_DIR = src
 H_DIR = src
-FILES = $(F_DIR)/main.c $(F_DIR)/move.c $(F_DIR)/pos.c $(F_DIR)/print.c 
+FILES = $(F_DIR)/main.c $(F_DIR)/move.c $(F_DIR)/pos.c $(F_DIR)/print.c \
+	$(F_DIR)/read.c $(F_DIR)/check.c $(F_DIR)/debug.c
 
 TMP = Makefile~  $(F_DIR)/header.h~ $(NAME)~ $(FILES:.c=.c~)
 

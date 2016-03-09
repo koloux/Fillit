@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 09:30:19 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/07 17:06:32 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/09 12:08:11 by nhuber            #+#    #+#             */
+/*   Updated: 2016/03/09 12:10:40 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	print_result(unsigned int *t, size_t size)
+void	debug_coordinates(unsigned int t)
 {
-	(void)t;
-	(void)size;
+	int		i;
+	int		n;
+	char	c;
 
-}
-
-void	print_error(void)
-{
-	ft_putstr("error\n");
+	i = 7;
+	n = 0;
+	while (i >= 0)
+	{
+		if (i % 2)
+			c = 'x';
+		else
+			c = 'y';
+		ft_putchar(c);
+		ft_putnbr(n);
+		ft_putstr(": ");
+		ft_putnbr(ft_bitgetfour(t, i));
+		if (!(i % 2))
+			ft_putchar('\n');
+		else
+			ft_putstr("   ----   ");
+		n++;
+		i--;
+	}
 }

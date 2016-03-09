@@ -6,13 +6,13 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:27:30 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/07 09:36:40 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/09 15:22:51 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	pos_cmp(unsigned int t1, unsigned int t2)
+unsigned int	pos_cmp(unsigned int t1, unsigned int t2)
 {
 	return (t1 & t2);
 }
