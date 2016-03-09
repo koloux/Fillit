@@ -12,9 +12,7 @@ Nhuber : Nicolas Huber<br />
 The goal of our algorithm was to make us learn bits manipulation and dynamic programming.
 
 #Convention
-..*[42 Norme](./subject/norme.pdf).<br />
-..*File name always explicitly explain their role in the program<br />
-..*Always append the file name in front of a function<br />
-..*Variable t is a ptr to int containing all tet<br />
-..*Variable tet is a tetromino<br />
+..* [42 Norme](./subject/norme.pdf).<br />
+..* File name always explicitly explain their role in the program<br />
+..* Always append the file name in front of a function name<br />
 
