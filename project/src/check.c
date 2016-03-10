@@ -6,36 +6,34 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 16:38:37 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/09 16:38:01 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:34:24 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	check_buff(char *buff)
+int	check_buff(char *buff, int size)
 {
 	size_t	i;
+	size_t	flag;
 	int	nbpc;
 
 	i = 0;
 	nbpc = 0;
+	flag = 0;
+	(size == 20) ? flag++ : i++;
 	while (buff[i])
 	{
-		if (buff[i] == '.')
-			i++;
-		else if (buff[i] == '#' && nbpc < 5)
-		{	
+		if (buff[i] == '#' && nbpc < 4)
+		{
 			nbpc++;
 			i++;
 		}
+		else if ((buff[i] == '.' || ((i + flag) % 5 == 0 && buff[i] == '\n')) 
+				&& nbpc < 5)
+			i++;
 		else
-		{
-			if ((i == 4 || i == 9 || i == 14 || i == 19 || i == 20)
-					&& buff[i] == '\n')
-				i++;
-			else
-				return (-1);
-		}
+			return (-1);
 	}
 	return ((i == ft_strlen(buff)) ? i : -1);
 }

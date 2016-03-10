@@ -6,13 +6,13 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 13:48:04 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/09 17:26:05 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/10 16:45:21 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	read_file(char *file, unsigned int **t)
+void	read_file(char *file, unsigned int *t)
 {
 	int	fd;
 	int	ret;
@@ -25,12 +25,12 @@ void	read_file(char *file, unsigned int **t)
 		while ((ret = read(fd, buff, size)) != 0)
 		{
 			buff[ret] = '\0';
-			if (check_buff(buff) != size)
+			if (check_buff(buff, size) != size)
 			{
 				print_error();
-				return ;
+				break ;
 			}
-			read_bufftoint(buff, t, 0);
+			read_bufftoint(buff, t, size / 20);
 			(size == 20) ? size++ : size;
 		}
 		if (close(fd) == -1)
@@ -40,7 +40,7 @@ void	read_file(char *file, unsigned int **t)
 		print_error();
 }
 
-void	read_bufftoint(char *buff, unsigned int **t, int index_t)
+void	read_bufftoint(char *buff, unsigned int *t, int index_t)
 {
 	unsigned int	tet;
 	int		x;
@@ -68,5 +68,7 @@ void	read_bufftoint(char *buff, unsigned int **t, int index_t)
 		}
 		buff++;
 	}
-	t[index_t] = &tet;
+	move_topleft(&tet);
+	printf("%d\n", index_t);
+	t[index_t] = tet;
 }
