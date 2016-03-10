@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:16:39 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/10 16:34:05 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/10 18:05:59 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <stdio.h>
 # include "libft.h"
 
-/*
-int tet_ref[19] = {69680, 69921, 66066, 34607378, 1056817, 17899554,
-			66064, 1052946, 69649, 69906, 1052961, 17830176,
-			16912401, 1056816, 66051, 1052960, 17830162,
-			17830177, 66065};
-*/
 /*
  * **    MOVE.C
  * */
@@ -35,7 +29,7 @@ void	move_topleft(unsigned int *t);
 /*
  * **    READ.C
  * */
-void	read_file(char *file, unsigned int *t);
+int	read_file(char *file, unsigned int *t);
 void	read_bufftoint(char *buff, unsigned int *t, int index_t);
 
 /*

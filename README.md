@@ -5,7 +5,7 @@ Given a maximum of 26 [Tetrominos](https://en.wikipedia.org/wiki/Tetromino) make
 Tetrominos will be represented from A to Z in the given order, non-filled points will be represented by a dot.<br />
 
 #Auteur :
-Kpiacent : Kevin Piacent<br />
+Kpiacent : Kevin Piacentini<br />
 Nhuber : Nicolas Huber<br />
 
 #Learning Goals :
