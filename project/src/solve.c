@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 09:33:14 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/11 15:29:05 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/11 08:49:47 by nhuber            #+#    #+#             */
+/*   Updated: 2016/03/11 15:29:07 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+void	solve(unsigned int *t)
 {
-	unsigned int *tar;
+	
 
-	tar = (unsigned int *)malloc(sizeof(unsigned int) * 27);
-	ft_bzero(tar, 27);
-	if (ac != 2)
-		print_usage();
-	else
-	{
-		tar[0] = 67108864;
-		if (read_file(av[1], tar) == -1)
-			print_error();
-		else
-			print_result(tar);
-	}
-	free(tar);
-	return (0);
+}
+
+int	solve_move(unsigned int *t, unsigned int )
+{
+
+}
+
+void	solve_minsq(unsigned int *t)
+{
+
 }
