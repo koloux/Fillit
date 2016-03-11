@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:33:14 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/11 15:29:05 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/11 18:30:28 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	main(int ac, char **av)
 		if (read_file(av[1], tar) == -1)
 			print_error();
 		else
+		{
+			pos_isfree(tar, 3);
 			print_result(tar);
+		}
 	}
 	free(tar);
 	return (0);

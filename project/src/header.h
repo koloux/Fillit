@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:16:39 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/10 18:05:59 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/11 18:17:54 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	move_topleft(unsigned int *t);
 /*
  * **    READ.C
  * */
+
 int	read_file(char *file, unsigned int *t);
 void	read_bufftoint(char *buff, unsigned int *t, int index_t);
 
@@ -37,19 +38,27 @@ void	read_bufftoint(char *buff, unsigned int *t, int index_t);
  * */
 
 unsigned int	pos_cmp(unsigned int t1, unsigned int t2);
-int	pos_isfree(unsigned int *tab, unsigned int index, size_t size);
+int		pos_isfree(unsigned int *t, unsigned int index);
 unsigned int	pos_getindex(unsigned int *t, unsigned int x, unsigned int y);
+
 /*
  * **    DEBUG.C
  * */
 
 void	debug_coordinates(unsigned int t);
+
 /*
  * **    CHECK.C
  * */
+
 int	check_buff(char *buff, int size);
 int	check_tet(unsigned int tet);
 
+/*
+ * **    SOLVE.C
+ * */
+
+//unsigned int	solve(unsigned int *t, int i, unsigned int sqrsize)
 
 /*
  * **    PRINT.C
