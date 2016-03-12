@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:16:39 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/11 18:17:54 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/12 20:32:49 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	read_bufftoint(char *buff, unsigned int *t, int index_t);
  * */
 
 unsigned int	pos_cmp(unsigned int t1, unsigned int t2);
-int		pos_isfree(unsigned int *t, unsigned int index);
+int		pos_isfree(unsigned int *t, unsigned int tet, unsigned int index);
 unsigned int	pos_getindex(unsigned int *t, unsigned int x, unsigned int y);
-
+int		pos_getborder(unsigned int tet, char *direction);
 /*
  * **    DEBUG.C
  * */
@@ -58,7 +58,7 @@ int	check_tet(unsigned int tet);
  * **    SOLVE.C
  * */
 
-//unsigned int	solve(unsigned int *t, int i, unsigned int sqrsize)
+unsigned int	solve(unsigned int *t, unsigned int index);
 
 /*
  * **    PRINT.C

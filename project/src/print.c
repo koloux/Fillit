@@ -6,12 +6,11 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:30:19 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/10 16:34:14 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/12 20:32:35 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
 
 void	print_result(unsigned int *t)
 {
@@ -20,10 +19,10 @@ void	print_result(unsigned int *t)
 	unsigned int	y;
 
 	x = 0;
-	while (x != (t[0] >> 24))
+	while (x != (t[0] >> 24) || x < 5)
 	{
 		y = 0;
-		while (y != (t[0] >> 24))
+		while (y != (t[0] >> 24) || y < 5)
 		{
 			index = pos_getindex(t, x, y);
 			if (index > 0)

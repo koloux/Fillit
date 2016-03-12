@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:27:30 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/11 18:22:08 by nhuber           ###   ########.fr       */
+/*   Updated: 2016/03/12 14:40:29 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ unsigned int	pos_cmp(unsigned int t1, unsigned int t2)
 	return (t1 & t2);
 }
 
-int	pos_isfree(unsigned int *t, unsigned int index)
+int	pos_isfree(unsigned int *t, unsigned int tet,unsigned int index)
 {
 	unsigned int	i;
 	unsigned int	match;
 
 	i = 0;
-	while (i < 8)
+	while (i < 8 && index > 1)
 	{
-		match = pos_getindex(t, ft_bitgetfour(t[index], i + 1), 
-				ft_bitgetfour(t[index], i));
+		match = pos_getindex(t, ft_bitgetfour(tet, i + 1), 
+				ft_bitgetfour(tet, i));
 		if (match != 0 && match < index)
 			return (0);
 		i += 2;
