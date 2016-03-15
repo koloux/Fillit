@@ -3,69 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 09:16:39 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 20:32:49 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/06 14:37:50 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 14:39:28 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
-# include <fcntl.h>
-# include <stdio.h>
+
 # include "libft.h"
+# include "fcntl.h"
+#include <stdio.h>
+/*
+ **    MOVE.C / FUNCTIONS TO MOVE
+ */
+void		move(unsigned int *t, char *direction);
+void		move_topleft(unsigned int *t);
+void		move_nxtl(unsigned int *t);
+void		move_resetall(unsigned int *tab);
 
 /*
- * **    MOVE.C
- * */
-
-void	move_down(unsigned int *t);
-void	move_up(unsigned int *t);
-void	move_right(unsigned int *t);
-void	move_left(unsigned int *t);
-void	move_topleft(unsigned int *t);
-
-/*
- * **    READ.C
- * */
-
-int	read_file(char *file, unsigned int *t);
-void	read_bufftoint(char *buff, unsigned int *t, int index_t);
-
-/*
- * **    POS.C
- * */
+ **    POS.C / FUNCTIONS TO CHECK POSITIONS
+ */
 
 unsigned int	pos_cmp(unsigned int t1, unsigned int t2);
-int		pos_isfree(unsigned int *t, unsigned int tet, unsigned int index);
-unsigned int	pos_getindex(unsigned int *t, unsigned int x, unsigned int y);
-int		pos_getborder(unsigned int tet, char *direction);
-/*
- * **    DEBUG.C
- * */
-
-void	debug_coordinates(unsigned int t);
+int				pos_isfree(unsigned int *tab, unsigned int tet, int index);
+int				pos_getindex(unsigned int *t, unsigned int x, unsigned int y);
+int				pos_getborder(unsigned int t, char *border);
 
 /*
- * **    CHECK.C
- * */
+ **    DEBUG.C
+ */
 
-int	check_buff(char *buff, int size);
-int	check_tet(unsigned int tet);
-
-/*
- * **    SOLVE.C
- * */
-
-unsigned int	solve(unsigned int *t, unsigned int index);
+void			debug_coordinates(unsigned int t);
 
 /*
- * **    PRINT.C
- * */
+ **    PRINT.C
+ */
 
-void	print_result(unsigned int *t);
-void	print_usage(void);
-void	print_error(void);
+void			print_result(unsigned int *t);
+void			print_usage(void);
+
+/*
+ **    SOLVE.C
+ */
+
+int				solve_set(unsigned int *tab, unsigned int index, int retry);
+int				solve(unsigned int *tab, unsigned int i, int retry);
+
+/*
+ **    READ.C
+ */
+
+int				read_file(char *file, unsigned int *tab);
+unsigned int	read_buftoint(char *buf);
+void				read_addtotab(unsigned int t, unsigned int *tab);
+
+/*
+ **    CHECK.c
+ */
+
+int		check_buf(char *buf, int size);
+int		check_tab(unsigned int *tab);		
 
 #endif

@@ -3,61 +3,134 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/11 08:49:47 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 20:32:05 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/06 16:25:00 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 11:28:32 by kpiacent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-unsigned int	solve(unsigned int *t, unsigned int i)
+/*
+int		solve(unsigned int *tab, unsigned int i, int retry)
 {
-	int	res;
+	int				res;
 
-	if (tab[i] == 0)
+	if (!tab[i])
 		return (1);
-	res = solve_set(tab, i);
+	res = solve_set(tab, i, retry);
 	if (!res && i == 1)
 	{
-		tab[0] += (1 << 24);
-		ft_bitsetfour(tab[0], 1, 0);
-		move_resetal(tab);
-		return (solve(tab, i));
+		tab[0]++;
+		move_resetall(tab);
+		return (solve(tab, i, 0));
 	}
 	if (res)
-		return (solve(tab, i + 1));
-	return (solve(tab, i - 1));
+	{
+		move_topleft(&tab[i + 1]);
+		return (solve(tab, i + 1, 0));
+	}
+	return (solve(tab, i - 1, 1));
 }
 
-int	solve_set(unsigned int *t, unsigned int index)
-{
-	int		x;
-	int		y;
-	unsigned int	tetcp;
-	int		flag;
 
-	flag = 0;
-	tetcp = tab[i];
-	if (ft_bitgeteight(tab[i], 3) != 0 || !ft_bitgetfour(tab[0], 0))
-		flag = 1;
-	tab[0] = (ft_bitgetfour(tab[0], 0) == 1) ? tab[0] ^ 1 : tab[0];
-	while (!pos_isfree(tab, tetcp, i) || flag)
+int			solve_set(unsigned int *tab, unsigned int i, int retry)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	x = pos_getborder(tab[i], "bottom");
+	y = pos_getborder(tab[i], "right");
+	if (y >= tab[0] || x >= tab[0])
+		return (0);
+	if (retry)
 	{
-		flag = 0;
-		x = pos_getborder(tetcp, "bottom");
-		y = pos_getborder(tetcp, "right");
-		if (y + 1 < (tab[0] >> 24))
-			move_right(&tetcp);
-		else if (y + 1 >= (tab[0] >> 24) && x + 1 <= (tab[0] >> 24))
-			move_nxtl(&tetcp);
+		if (y + 1 < tab[0])
+			move(&tab[i], "right");
+		else if (y + 1 >= tab[0] && x + 1 <= tab[0])
+			move_nxtl(&tab[i]);
+		return (solve_set(tab, i, 0));
+	}
+	if (pos_isfree(tab, tab[i], i))
+		return (1);
+	return (solve_set(tab, i, 1));
+}
+
+int		solve_set(unsigned int *tab, unsigned int i, int retry)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	x = pos_getborder(tab[i], "bottom");
+	y = pos_getborder(tab[i], "right");
+	if (x >= tab[0] || y >= tab[0])
+		return (0);
+	if (retry)
+	{
+		if (y + 1 < tab[0])
+			move(&tab[i], "right");
+		else if (y + 1 >= tab[0] && x + 1 < tab[0])
+			move_nxtl(&tab[i]);
 		else
 			return (0);
 	}
-	if (pos_getborder(tetcp, "bottom") >= (tab[0] >> 24)
-			|| pos_getborder(tetcp, "right") >= (tab[0] >> 24))
+	x = pos_getborder(tab[i], "bottom");
+	y = pos_getborder(tab[i], "right");
+	if (pos_isfree(tab, tab[i], i))
+		return (1);
+	return (solve_set(tab, i, 1));
+}
+
+*/
+int		solve(unsigned int *tab, unsigned int i, int retry)
+{
+	int		res;
+
+	while (tab[i])
+	{
+		res = solve_set(tab, i, retry);
+		if (!res && i == 1)
+		{
+			tab[0]++;
+			move_resetall(tab);
+			i++;
+		}
+		else if (res)
+		{
+			move_topleft(&tab[i + 1]);
+			retry = 0;
+			i++;
+		}
+		else
+		{
+			retry = 1;
+			i--;
+		}
+	}
+	return (1);
+}
+
+int		solve_set(unsigned int *tab, unsigned int i, int retry)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	x = pos_getborder(tab[i], "bottom");
+	y = pos_getborder(tab[i], "right");
+	if (y >= tab[0] || x >= tab[0])
 		return (0);
-	tab[i] = tetcp;
+	while (!pos_isfree(tab, tab[i], i) || retry)
+	{
+		retry = 0;
+		if (y + 1 < tab[0])
+			move(&tab[i], "right");
+		else if (y + 1 >= tab[0] && x + 1 <= tab[0])
+			move_nxtl(&tab[i]);
+		x = pos_getborder(tab[i], "bottom");
+		y = pos_getborder(tab[i], "right");
+		if (y >= tab[0] || x >= tab[0])
+			return (0);
+	}
 	return (1);
 }

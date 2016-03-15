@@ -3,72 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 13:48:04 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 14:00:38 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/07 10:03:23 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 15:22:07 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdio.h>
 
-int	read_file(char *file, unsigned int *t)
+int				read_file(char *file, unsigned int *tab)
 {
-	int	fd;
-	int	ret;
-	int	size;
-	char	buff[22];
-	int	i;
+	int		fd;
+	int		ret;
+	int		size;
+	char	buf[22];
 
-	i = 1;
 	size = 20;
 	if ((fd = open(file, O_RDONLY)) != -1)
 	{
-		while ((ret = read(fd, buff, size)) != 0)
+		while ((ret = read(fd, buf, size)))
 		{
-			buff[ret] = '\0';
-			if (check_buff(buff, size) != size || ret != size
-					|| check_tet(t[i]) == -1)
+			buf[ret] = '\0';
+			if (check_buf(buf, ret) != size || ret != size)
+			{
+				ft_putstr("error\n");
 				return (-1);
-			read_bufftoint(buff, t, i);
-			(size == 20) ? size++ : size;
-			i++;
+			}
+			read_addtotab(read_buftoint(buf), tab);
+			size = 21;
 		}
-		if (close(fd) == -1)
-			return (-1);
+		return (1);
 	}
-	else
-		return (-1);
-	return (0);
+	return (-1);
 }
 
-void	read_bufftoint(char *buff, unsigned int *t, int index_t)
+/*
+** Considering that the unsigned int *tab wad bzeroed before.
+*/
+
+void	read_addtotab(unsigned int t, unsigned int *tab)
 {
-	unsigned int	tet;
-	int		x;
-	int		y;
-	int		index;
+	tab++;
+	while (*tab != 0)
+		tab++;
+	*tab = t;
+}
+
+unsigned int	read_buftoint(char *buf)
+{
+	int				x;
+	int				y;
+	int				i;
+	unsigned int	t;
 
 	x = 0;
 	y = 0;
-	index = 7;
-	(*buff == '\n') ? buff++ : buff;
-	while (*buff)
+	i = 7;
+	*buf == '\n' ? buf++ : buf;
+	while (*buf)
 	{
-		if (*buff == '#')
+		if (*buf == '#')
 		{
-			ft_bitsetfour(&tet, x, index);
-			ft_bitsetfour(&tet, y, index - 1);
-			index -= 2;
+			ft_bitsetfour(&t, x, i);
+			ft_bitsetfour(&t, y, i - 1);
+			i -= 2;
 		}
 		y++;
-		if (*buff == '\n')
+		if (*buf == '\n')
 		{
-			y = 0;
 			x++;
+			y = 0;
 		}
-		buff++;
+		buf++;
 	}
-	move_topleft(&tet);
-	t[index_t] = tet;
+	return (t);
 }

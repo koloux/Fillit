@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 09:33:14 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 10:52:19 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/14 18:54:27 by nhuber            #+#    #+#             */
+/*   Updated: 2016/03/15 15:21:50 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,30 @@
 
 int	main(int ac, char **av)
 {
-	unsigned int *tar;
+	unsigned int	*tab;
+	unsigned int	bottom;
+	unsigned int	right;
 
-	tar = (unsigned int *)malloc(sizeof(unsigned int) * 27);
-	ft_bzero(tar, 27);
-	if (ac != 2)
+	if (ac > 2)
 		print_usage();
 	else
 	{
-		tar[0] = 67108864;
-		if (read_file(av[1], tar) == -1)
-			print_error();
+		if (!(tab = (unsigned int *)ft_memalloc(sizeof(int) * 27)))
+			return ((int)NULL);
+		ft_bzero(tab, 27);
+		if (read_file(av[1], tab) == -1)
+			return (-1);
+		move_resetall(tab);
+		if (check_tab(tab) == -1)
+			ft_putstr("error\n");
 		else
 		{
-			
-			print_result(tar);
+			right = pos_getborder(tab[1], "right");
+			bottom = pos_getborder(tab[1], "bottom");
+			tab[0] = right > bottom ? right : bottom;
+			(void)solve(tab, 1, 0);
+			print_result(tab);
 		}
 	}
-	free(tar);
 	return (0);
 }

@@ -3,56 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 16:38:37 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 13:18:46 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/07 15:45:49 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 15:22:04 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "t_ref.h"
 
-int tet_ref[19] = {69664, 69921, 66066, 34607378, 1056817, 17899554,
-			66064, 1052946, 69649, 69906, 1052961, 17830176,
-			16912401, 1056816, 66051, 1052960, 17830162,
-			17830177, 66065};
+int		check_tab(unsigned int *tab)
+{
+	int	i;
+	int	j;
+	int	sharp;
 
-int	check_buff(char *buff, int size)
+	j = 1;
+	sharp = 0;
+	while (tab[j] != 0)
+	{
+		i = 0;
+		while (i < 19)
+		{
+			if (tab[j] == t_ref[i])
+			{
+				sharp++;
+				break ;
+			}
+			i++;
+		}
+		j++;
+	}
+	return ((sharp == j - 1) ? 1 : -1);
+}
+
+int	check_buf(char *buff, int size)
 {
 	size_t	i;
 	size_t	flag;
-	int	nbpc;
+	int	nbsharp;
 
 	i = 0;
-	nbpc = 0;
+	nbsharp = 0;
 	flag = (size == 20) ? 1 : 0;
 	while (buff[i])
 	{
-		if (buff[i] == '#' && nbpc < 4)
+		if (buff[i] == '#' && nbsharp < 4)
 		{
-			nbpc++;
+			nbsharp++;
 			i++;
 		}
-		else if (((buff[i] == '.' && (i + flag) % 5 != 0) 
-				|| ((i + flag) % 5 == 0 && buff[i] == '\n')) 
-				&& nbpc < 5)
+		else if (((buff[i] == '.' && (i + flag) % 5 != 0)
+					|| ((i + flag) % 5 == 0 && buff[i] == '\n'))
+				&& nbsharp < 5)
 			i++;
 		else
 			return (-1);
 	}
+	if (nbsharp != 4)
+		return (-1);
 	return ((i == ft_strlen(buff)) ? i : -1);
-}
-
-int	check_tet(unsigned int tet)
-{
-	int	i;
-
-	i = 0;
-	while (i < 20)
-	{
-		if (pos_cmp(tet, tet_ref[i]) == tet)
-			return (1);
-		i++;
-	}
-	return (-1);
 }

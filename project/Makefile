@@ -6,7 +6,7 @@
 #*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/03/07 09:32:29 by nhuber            #+#    #+#             *#
-#*   Updated: 2016/03/11 18:17:17 by nhuber           ###   ########.fr       *#
+#*   Updated: 2016/03/13 13:42:16 by nhuber           ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -17,7 +17,7 @@ L_DIR = library/libft
 F_DIR = src
 H_DIR = src
 FILES = $(F_DIR)/main.c $(F_DIR)/move.c $(F_DIR)/pos.c $(F_DIR)/print.c \
-	$(F_DIR)/read.c $(F_DIR)/check.c $(F_DIR)/debug.c
+	$(F_DIR)/read.c $(F_DIR)/check.c $(F_DIR)/debug.c $(F_DIR)/solve.c
 
 TMP = Makefile~  $(F_DIR)/header.h~ $(NAME)~ $(FILES:.c=.c~)
 

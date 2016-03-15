@@ -1,40 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   t_ref.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/06 15:22:11 by kpiacent          #+#    #+#             */
-/*   Updated: 2016/03/06 15:47:47 by kpiacent         ###   ########.fr       */
+/*   Created: 2016/03/15 11:48:38 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 15:21:04 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef	T_REF_H
+# define T_REF_H
 
-void	debug_coordinates(unsigned int t)
-{
-	int		i;
-	int		n;
-	char	c;
+unsigned int	t_ref[19] = {69664, 69921, 66066, 34607378, 1056816,
+		1056801, 66064, 1052946, 69649, 69906, 1052961, 17830176,
+		16912401, 17899553, 66051, 1052960, 17830162, 17830177, 66065};
 
-	i = 7;
-	n = 0;
-	while (i >= 0)
-	{
-		if (i % 2)
-			c = 'x';
-		else
-			c = 'y';
-		ft_putchar(c);
-		ft_putnbr(n);
-		ft_putstr(": ");
-		ft_putnbr(ft_bitgetfour(t, i));
-		if (!(i % 2))
-			ft_putchar('\n');
-		else
-			ft_putstr("   ----   ");
-		n++;
-		i--;
-	}
-}
+#endif

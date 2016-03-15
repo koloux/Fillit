@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kpiacent <kpiacent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 09:30:19 by nhuber            #+#    #+#             */
-/*   Updated: 2016/03/12 20:32:35 by nhuber           ###   ########.fr       */
+/*   Created: 2016/03/06 15:49:06 by kpiacent          #+#    #+#             */
+/*   Updated: 2016/03/15 14:32:28 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	print_result(unsigned int *t)
 {
-	int		index;
+	int				index;
 	unsigned int	x;
 	unsigned int	y;
 
 	x = 0;
-	while (x != (t[0] >> 24) || x < 5)
+	while (x < (t[0]))
 	{
 		y = 0;
-		while (y != (t[0] >> 24) || y < 5)
+		while (y < (t[0]))
 		{
 			index = pos_getindex(t, x, y);
 			if (index > 0)
@@ -37,11 +37,6 @@ void	print_result(unsigned int *t)
 		ft_putchar('\n');
 		x++;
 	}
-}
-
-void	print_error(void)
-{
-	ft_putstr("error\n");
 }
 
 void	print_usage(void)
